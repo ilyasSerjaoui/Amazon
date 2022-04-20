@@ -1,0 +1,69 @@
+﻿@model IEnumerable<amazon.Models.Home>
+@{
+    Layout = "_Layout.cshtml";
+    ViewData["fng"] = ViewData["f-n"];
+    ViewData["getcountelements"]=ViewData["countelements"];
+}
+<div class="cartDetails">
+    @foreach (var itemCart in Model)
+    {
+        if (itemCart.image != null)
+        {
+            <div class="singelcart">
+                <div id="list">
+                    <img width="150px" height="250" class="imgcart" src="~/images/@itemCart.image" />
+                </div>
+                <div id="list" class="copdeteal">
+                    <div class="name">@itemCart.name.Replace("_", " ")</div>
+                    <div id="price">Price: <mark style="background:none; color:gray">$@itemCart.price</mark></div>
+                    <div id="rating">Rating: <mark style="background:none; color:gray">@itemCart.howmush</mark></div>
+                </div>
+
+                <div class="editcart">
+                    <buton style="color:white; background:red; font-weight:bold; border:none; border-radius:20px; padding:10px; font-size:15px;">Delete</buton>
+                    <buton style="color:white; background:green; font-weight:bold; border:none; border-radius:20px; padding:10px; font-size:15px;">add to items</buton>
+                </div>
+            </div><br />
+        }
+    }
+</div>
+<style>
+    button{cursor:pointer;}
+    .editcart {
+        margin-left: 200px;
+        margin-top: -50px;
+    }
+    .imgcart {
+        margin-top: 10px;
+    }
+    #price {
+        position: absolute;
+        padding-left: 10px;
+        padding-top: 60px;
+    }
+    #rating {
+        position: absolute;
+        padding-left: 10px;
+        padding-top: 100px;
+    }
+    .copdeteal {
+        float: right;
+        margin-right: 300px;
+        margin-top: 50px;
+        width: 550px;
+    }
+    body {background: #EFEBEA;}
+    #list{display:inline-flex;}
+    .name{padding-left:10px; font-weight:bold;
+    }
+    .cartDetails {
+        position:absolute;
+        top:100px;
+        left:10px;
+    }
+    
+    .singelcart {
+        width:1000px;
+        height:270px;
+        background:white;}
+</style>

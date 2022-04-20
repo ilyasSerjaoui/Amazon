@@ -1,0 +1,196 @@
+﻿@model IEnumerable<amazon.Models.Home>
+@{
+    Regex aNum = new Regex(@"\s+");
+}
+@{
+    Layout = "_Layout.cshtml";
+    ViewData["fng"] = ViewData["f-n"];
+    ViewData["getcountelements"]=ViewData["countelements"];
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+@using System.Text.RegularExpressions
+<div class="women_fashion">
+    <div class="title"><i class="fa fa-female" style="font-size:36px"></i> women fashion</div>
+    <div style="position:absolute; top:60px;">
+        @foreach (var item in Model)
+        {
+            if (item.image != null)
+            {
+                if (item.type == "women_fashion")
+                {
+                    <a asp-controller="Home" asp-action="Details" asp-route-Name="@aNum.Replace(@item.name, "_")" asp-route-Em="@ViewData["f-n"]" asp-route-email="@ViewData["email"]">
+                        <div class="productspalte">
+                            <img id="imgproduct" src="~/images/@item.image" width="200px" height="300px" />
+                            <div id="nameproduct">
+                                @if (item.name.Length <= 50)
+                                {
+                                    @item.name
+                                }
+                                else
+                                {
+                                    @for (var i = 0; i <= 50; i++)
+                                    {
+                                        @item.name[i]
+                                    }
+                                }...
+                            </div>
+                            <div id="mushproduct">@item.howmush ratings</div>
+                            <div id="priceproduct">@item.price</div>
+                        </div>
+                    </a>
+                }
+            }
+        }
+
+    </div>
+</div>
+<div class="men_fashion">
+    @ViewData["em"]
+    <div class="title"><i class="fa fa-male" style="font-size:36px"></i> male fashion</div>
+    <div style="position:absolute; top:60px;">
+        @foreach (var item in Model)
+        {
+            if (item.image != null)
+            {
+                if (item.type == "men_fashion")
+                {
+                    <div class="productspalte">
+                        <a asp-controller="Home" asp-action="Details" asp-route-Name="@aNum.Replace(@item.name, "_")" asp-route-Em="@ViewData["f-n"]" asp-route-email="@ViewData["email"]">
+                            <img id="imgproduct" src="~/images/@item.image" width="200px" height="320px" />
+                            <div id="nameproduct">
+                                @if (item.name.Length <= 50)
+                                {
+                                    @item.name
+                                }
+                                else
+                                {
+                                    @for (var i = 0; i <= 50; i++)
+                                    {
+                                        @item.name[i]
+                                    }
+                                }...
+                            </div>
+                            <div id="mushproduct">@item.howmush ratings</div>
+                            <div id="priceproduct">@item.price</div>
+                        </a>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+<div class="electronics">
+    <div class="title"><i class="fa fa-desktop" style="font-size:36px"></i> electronics</div>
+    <div style="position:absolute; top:60px;">
+
+        @foreach (var item in Model)
+        {
+            if (item.image != null)
+            {
+                if (item.type == "electronics")
+                {
+                    <div class="productspalte">
+                        <a asp-controller="Home" asp-action="Details" asp-route-Name="@aNum.Replace(@item.name, "_")" asp-route-Em="@ViewData["f-n"]" asp-route-email="@ViewData["email"]">
+                            <img id="imgproduct" src="~/images/@item.image" width="200px" height="320px" />
+
+                            <div id="nameproduct">
+                                @if (item.name.Length <= 50)
+                                {
+                                    @item.name
+                                }
+                                else
+                                {
+                                    @for (var i = 0; i <= 50; i++)
+                                    {
+                                        @item.name[i]
+                                    }
+                                }...
+                            </div>
+
+                            <div id="mushproduct">@item.howmush ratings</div>
+                            <div id="priceproduct">@item.price</div>
+                        </a>
+                    </div>
+                }
+            }
+        }
+
+    </div>
+</div>
+
+<style>
+    body {
+        background: url("https://m.media-amazon.com/images/I/61CX1noQ8nL._SX3000_.jpg");
+        background-size: cover;
+    }
+
+    .title {
+        margin: 20px;
+        padding-left: 100px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    #mushproduct {
+        font-size: 14px;
+        font-weight: bold;
+        color: #007185;
+        padding: 5px;
+    }
+
+    #priceproduct {
+        font-weight: bold;
+        font-size: 15px;
+        padding: 5px;
+        color: black;
+    }
+
+    .productspalte {
+        width: 150px;
+        height: 300px;
+        padding: 15px;
+        margin: 10px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .productspalte:hover #nameproduct {
+            color: orange;
+        }
+
+    .men_fashion {
+        position: absolute;
+        top: 300px;
+        left: 513px;
+        background: white;
+        width: 450px;
+        height: 5000px;
+    }
+
+    .electronics {
+        position: absolute;
+        top: 300px;
+        left: 980px;
+        border-top-right-radius: 20px;
+        background: white;
+        width: 450px;
+        height: 5000px;
+    }
+
+    .women_fashion {
+        position: absolute;
+        top: 300px;
+        left: 40px;
+        border-top-left-radius: 20px;
+        background: white;
+        width: 450px;
+        height: 5000px;
+    }
+
+    #nameproduct {
+        font-weight: normal;
+        font-size: 15px;
+        color: black;
+    }
+</style>
+

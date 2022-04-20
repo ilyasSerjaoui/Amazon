@@ -1,0 +1,199 @@
+﻿@model IEnumerable<amazon.Models.Home>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.2.min.js"></script>
+    @{
+        Layout = "_Layout.cshtml";
+        ViewData["fng"] = ViewData["f-n"];
+        ViewData["getcountelements"] = ViewData["countelements"];
+    }
+    @foreach (var itemDetails in Model)
+    {
+        if (itemDetails.image != null)
+        {
+            <img class="image" width="400px" height="550px" src="~/images/@itemDetails.image" />
+            <div class="details">
+                <div class="name">@itemDetails.name</div>
+                <div class="rating">@itemDetails.howmush ratings</div>
+                <hr />
+                <div id="prices">
+                    Price: <div class="p1" id="price"> @itemDetails.price</div><br />
+                    @{
+                        if (itemDetails.price.Contains("-"))
+                        {
+                            <div class="p2" id="price"></div>
+                        }
+                        else
+                        {
+                            <p>you save:</p><div class="p2" id="price">
+                                @{
+                                    string price = itemDetails.price.Replace("$", "");
+                                    float pricetosave;
+                                    float.TryParse(price, out pricetosave);
+                                    pricetosave = pricetosave * 4 / 100;
+                                }
+                                $@pricetosave ( 4% )
+                            </div>
+
+                        }
+                        double delivery = 66.80;
+                    }
+                    <div class="deliver">
+                        $ @delivery Shipping & Import Fees Deposit to...
+                    </div>
+                </div>
+                <div class="purchse">
+                    @{
+                        bool ifnotlogin(string Em)
+                        {
+                            return Em == "login";
+                        }
+                    }
+                    @if (ifnotlogin(ViewData["f-n"].ToString()) != true)
+                    {
+                        <form class="btnsprs" asp-controller="Home" asp-action="Cartitem" asp-route-name="@itemDetails.name.Replace(" ", "_")" asp-route-price="@itemDetails.price.Replace("$", "")" asp-route-image="@itemDetails.image" asp-route-Em="@ViewData["f-n"]" asp-route-rating="@itemDetails.howmush" asp-route-type="@itemDetails.type" asp-route-email="@ViewData["em"]">
+                            <button style="background: yellow; border-radius:40px; border:none; width: 200px; padding: 10px; " id="btncard">add to cart</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="btnsprs">
+                            <button style="background: yellow; border-radius:40px; border:none; width: 200px; padding: 10px; " id="btncardfake">add to cart</button>
+                        </div>
+                    }
+
+                    <button style="background: orange; border-radius: 40px; border:none; width: 200px; padding: 10px; " class="btnsprs" id="btnbuy">buy now</button>
+                    <div class="btnsprs" style="padding-left: 10px; color: green; font-weight: bold;  font-size: 15px;">In Stock</div><br />
+
+                    <div id="detailpur" style="color:#007185;" class="del">
+                        Deliver to..
+                    </div>
+                    <div id="detailpur" class="where">
+                        $@delivery Shipping & Import Fees Deposit to
+                    </div>
+                    <div id="detailpur" style="color:black; " class="deliverTime">
+                        @{
+                            DateTime dateTime = DateTime.Now;
+                            var getdate = dateTime.AddDays(15);
+                            switch (getdate.Month)
+                            {
+                                case 1:
+                                    <div>Delivery january - @getdate.Day</div>
+                                    break;
+                                case 2:
+                                    <div>Delivery january - @getdate.Day</div>
+                                    break;
+                                case 3:
+                                    <div>Delivery march - @getdate.Day</div>
+                                    break;
+                                case 4:
+                                    <div>Delivery April - @getdate.Day</div>
+                                    break;
+                                case 5:
+                                    <div>Delivery may - @getdate.Day</div>
+                                    break;
+                                case 6:
+                                    <div>Delivery june - @getdate.Day</div>
+                                    break;
+                                case 7:
+                                    <div>Delivery july - @getdate.Day</div>
+                                    break;
+                                case 8:
+                                    <div>Delivery august - @getdate.Day</div>
+                                    break;
+                                case 9:
+                                    <div>Delivery september - @getdate.Day</div>
+                                    break;
+                                case 10:
+                                    <div>Delivery october - @getdate.Day</div>
+                                    break;
+                                case 11:
+                                    <div>Delivery november - @getdate.Day</div>
+                                    break;
+                                case 12:
+                                    <div>Delivery december - @getdate.Day</div>
+                                    break;
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <script>
+        document.getElementById("btncardfake").addEventListener("click", () => {
+            document.getElementById("loginbtn").click()
+        })
+    </script>
+    <style>
+        #detailpur {
+            display: inline-flex;
+            width: 150px;
+            padding-left: 10px;
+            padding-top: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            color: gray;
+        }
+
+        .btnsprs {
+            display: inline-block;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .purchse {
+            position: absolute;
+            top: 300px;
+            width: 500px;
+            padding: 15px;
+            border: solid 1px gray;
+            border-radius: 8px;
+        }
+
+        .deliver {
+            font-size: 15px;
+            color: gray;
+            margin: 10px;
+            font-style: initial;
+        }
+
+        .image {
+            position: absolute;
+            top: 100px;
+            left: 30px;
+            border: solid 1px;
+        }
+
+        .details {
+            position: absolute;
+            top: 100px;
+            left: 550px;
+        }
+
+        .name {
+            letter-spacing: 1px;
+            font-weight: bold;
+            width: 600px;
+            font-size: 22px;
+        }
+
+        .rating {
+            color: #007185;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
+        #prices {
+            padding-top: 15px;
+        }
+
+        #price {
+            color: red;
+            font-size: 18px;
+        }
+
+        .p1, .p2 {
+            display: inline-block;
+        }
+    </style>
+

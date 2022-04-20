@@ -1,0 +1,101 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="http://www.parsecdn.com/js/parse-1.2.2.min.js"></script>
+@{
+    Layout = "_Layout.cshtml";
+    ViewData["fng"] = ViewData["f-n"];
+}
+<div class="platofsing">
+    <form method="post" id="singup">
+        <input type="text" name="fn" placeholder="First name" id="inpsing" /><br /><br />
+        <input type="text" name="sn" placeholder="Last name" id="inpsing" /><br /><br />
+        <input type="email" name="em" placeholder="E-mail" id="inpsing" /><br /><br />
+        <input type="password" name="ps" placeholder="Password" id="inpsing" /><br /><br />
+        <input type="password" placeholder="Re-password" id="inpsing" /><br /><br />
+        <input type="date" name="bd" id="inpsing" required /><br /><br />
+        <button id="rebtn">Register</button><br /><br />
+        <div id="loginbtnlink">login</div>
+    </form>
+</div>
+
+<div style="display:none;" class="platoflogin">
+    <form method=post id=login>
+        <input name="gem" type=text placeholder=E-mail id=inpsing /><br /><br />
+        <input name="gps" type=passwrod placeholder=Password id=inpsing /><br /><br />
+        <button id=rebtn>Login</button><br /><br />
+        <div id=createonebtn>Create One</div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("loginbtnlink").addEventListener("click", () => {
+        $(".platoflogin").show()
+        $(".platofsing").hide()
+    })
+    document.getElementById("createonebtn").addEventListener("click", () => {
+        $(".platoflogin").hide()
+        $(".platofsing").show()
+    })
+</script>
+
+<style>
+    .platoflogin {
+        position: absolute;
+        top: 100px;
+        left: 500px;
+        border-radius: 12px;
+        right: 500px;
+        bottom: 400px;
+        background: #fff;
+    }
+
+    .platofsing {
+        position: absolute;
+        top: 100px;
+        left: 500px;
+        border-radius: 12px;
+        right: 500px;
+        bottom: 200px;
+        background: #fff;
+    }
+
+    body {
+        background: #EEE3E0;
+    }
+
+    #inpsing {
+        font-size: 15px;
+        width: 200px;
+        border-radius: 5px;
+        padding: 3px;
+    }
+
+    #createonebtn {
+        cursor: pointer;
+        color: blue;
+    }
+
+    #loginbtnlink {
+        cursor: pointer;
+        color: blue;
+    }
+
+    #login {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    }
+
+    #singup {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    }
+
+    #rebtn {
+        border: none;
+        background: orange;
+        font-weight: bold;
+        width: 100px;
+        padding: 5px;
+    }
+</style>

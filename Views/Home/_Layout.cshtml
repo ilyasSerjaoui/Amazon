@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="barTop">
+        <div id="getcountelements">@ViewData["getcountelements"]</div>
+        <i style="color:#fff; cursor:pointer; font-size:20px; margin:15px;" class="fa fa-list"></i>
+        <a asp-controller="Home" asp-action="Ceo"><img width="150px" height="80px" id="logosite" src="https://logo-marque.com/wp-content/uploads/2020/04/Amazon-Symbole.png" /></a>
+        <form class="searchboit">
+            <div id="selcetsearch">All</div><input id="inpsearch" type="text" required name="search" /><button id="btnsearch"><i class="fa fa-search"></i></button>
+        </form>
+        <img id="carticon" src="~/images/cart-icon.png"/>
+        <a asp-controller="Home" asp-action="Ceo" id="loginbtn">
+            @ViewData["fng"]<br />
+            Accounts & List
+        </a>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="http://www.parsecdn.com/js/parse-1.2.2.min.js"></script>
+<style>
+    #getcountelements {
+        position: absolute;
+        right: 22px;
+        top:-2px;
+        background:black;
+        font-size:14px;
+        z-index: 100;
+        padding: 5px;
+        border-radius: 50%;
+        color: red;
+        font-weight: bold;
+    }
+    #loginbtn {
+        position: absolute;
+        top: 10px;
+        right: 100px;
+        font-weight: bold;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: #fff;
+    }
+    #carticon {
+        position: absolute;
+        top: 0;
+        height: 50px;
+        right: 10px;
+        bottom: 0;
+    }
+    .list {
+        position: absolute;
+        top: 0;
+        z-index: 200;
+        background: white;
+    }
+    #logosite {
+        position: absolute;
+        top: -13px;
+        left: 50px;
+    }
+    .barTop {
+        position: fixed;
+        background-color: black;
+        width: 100%;
+        z-index: 100;
+        height: 50px;
+    }
+    * {
+        margin: 0 auto;
+    }
+    #inpsearch {
+        width: 650px;
+        padding: 5px;
+        font-size: 15px;
+        border: none;
+    }
+    #selcetsearch {
+        position: absolute;
+        background: #EFEBEA;
+        font-size: 15px;
+        left: -29px;
+        padding: 5px;
+        border-top-left-radius: 9px;
+        border-bottom-left-radius: 9px;
+    }
+
+        #selcetsearch:hover {
+            cursor: pointer;
+        }
+
+    #btnsearch {
+        background: orange;
+        border-top-right-radius: 9px;
+        border-bottom-right-radius: 9px;
+        padding: 5px;
+        font-size: 15px;
+        border: none;
+        width: 50px;
+    }
+
+    .searchboit {
+        position: absolute;
+        left: 350px;
+        top: 10px;
+    }
+</style>

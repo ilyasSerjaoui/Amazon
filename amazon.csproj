@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\" />
+    <None Remove="Views\Home\" />
+    <None Remove="Models\" />
+    <None Remove="Controllers\" />
+    <None Remove="MySql.Data" />
+    <None Remove="Demo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Models\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Demo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.27" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\images\" />
+  </ItemGroup>
+</Project>
